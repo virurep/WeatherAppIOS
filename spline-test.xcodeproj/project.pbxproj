@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA644ECB2BFC3F800007430F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECA2BFC3F800007430F /* LocationManager.swift */; };
+		FA644ECE2BFC42EE0007430F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECD2BFC42EE0007430F /* WelcomeView.swift */; };
+		FA644ED02BFC48490007430F /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECF2BFC48490007430F /* LoadingScreen.swift */; };
+		FA644ED22BFC4AC70007430F /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ED12BFC4AC70007430F /* WeatherManager.swift */; };
+		FA644ED42BFC60850007430F /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ED32BFC60850007430F /* WeatherView.swift */; };
 		FA7CDECC2BFBCB6600200386 /* spline_testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDECB2BFBCB6600200386 /* spline_testApp.swift */; };
 		FA7CDECE2BFBCB6600200386 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDECD2BFBCB6600200386 /* ContentView.swift */; };
 		FA7CDED02BFBCB6800200386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA7CDECF2BFBCB6800200386 /* Assets.xcassets */; };
@@ -14,6 +19,7 @@
 		FA7CDEDD2BFBCB6900200386 /* spline_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEDC2BFBCB6900200386 /* spline_testTests.swift */; };
 		FA7CDEE72BFBCB6900200386 /* spline_testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEE62BFBCB6900200386 /* spline_testUITests.swift */; };
 		FA7CDEE92BFBCB6900200386 /* spline_testUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEE82BFBCB6900200386 /* spline_testUITestsLaunchTests.swift */; };
+		FA7CDEF82BFBCBA400200386 /* SplineRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = FA7CDEF72BFBCBA400200386 /* SplineRuntime */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA644ECA2BFC3F800007430F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		FA644ECD2BFC42EE0007430F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		FA644ECF2BFC48490007430F /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		FA644ED12BFC4AC70007430F /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		FA644ED32BFC60850007430F /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		FA7CDEC82BFBCB6600200386 /* spline-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "spline-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7CDECB2BFBCB6600200386 /* spline_testApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spline_testApp.swift; sourceTree = "<group>"; };
 		FA7CDECD2BFBCB6600200386 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7CDEF82BFBCBA400200386 /* SplineRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +83,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA644EC92BFC3F400007430F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FA644ECA2BFC3F800007430F /* LocationManager.swift */,
+				FA644ED12BFC4AC70007430F /* WeatherManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		FA644ECC2BFC42AF0007430F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA7CDECD2BFBCB6600200386 /* ContentView.swift */,
+				FA644ECD2BFC42EE0007430F /* WelcomeView.swift */,
+				FA644ECF2BFC48490007430F /* LoadingScreen.swift */,
+				FA644ED32BFC60850007430F /* WeatherView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FA7CDEBF2BFBCB6600200386 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +110,7 @@
 				FA7CDEDB2BFBCB6900200386 /* spline-testTests */,
 				FA7CDEE52BFBCB6900200386 /* spline-testUITests */,
 				FA7CDEC92BFBCB6600200386 /* Products */,
+				FA7CDEF62BFBCBA400200386 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,8 +127,9 @@
 		FA7CDECA2BFBCB6600200386 /* spline-test */ = {
 			isa = PBXGroup;
 			children = (
+				FA644ECC2BFC42AF0007430F /* Views */,
+				FA644EC92BFC3F400007430F /* Managers */,
 				FA7CDECB2BFBCB6600200386 /* spline_testApp.swift */,
-				FA7CDECD2BFBCB6600200386 /* ContentView.swift */,
 				FA7CDECF2BFBCB6800200386 /* Assets.xcassets */,
 				FA7CDED12BFBCB6800200386 /* Preview Content */,
 			);
@@ -127,6 +161,13 @@
 			path = "spline-testUITests";
 			sourceTree = "<group>";
 		};
+		FA7CDEF62BFBCBA400200386 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +184,9 @@
 			dependencies = (
 			);
 			name = "spline-test";
+			packageProductDependencies = (
+				FA7CDEF72BFBCBA400200386 /* SplineRuntime */,
+			);
 			productName = "spline-test";
 			productReference = FA7CDEC82BFBCB6600200386 /* spline-test.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +259,9 @@
 				Base,
 			);
 			mainGroup = FA7CDEBF2BFBCB6600200386;
+			packageReferences = (
+				FA7CDEF52BFBCB9D00200386 /* XCRemoteSwiftPackageReference "spline-ios" */,
+			);
 			productRefGroup = FA7CDEC92BFBCB6600200386 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,8 +304,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA644ED22BFC4AC70007430F /* WeatherManager.swift in Sources */,
+				FA644ED02BFC48490007430F /* LoadingScreen.swift in Sources */,
 				FA7CDECE2BFBCB6600200386 /* ContentView.swift in Sources */,
 				FA7CDECC2BFBCB6600200386 /* spline_testApp.swift in Sources */,
+				FA644ECB2BFC3F800007430F /* LocationManager.swift in Sources */,
+				FA644ED42BFC60850007430F /* WeatherView.swift in Sources */,
+				FA644ECE2BFC42EE0007430F /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +482,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +512,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,6 +642,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA7CDEF52BFBCB9D00200386 /* XCRemoteSwiftPackageReference "spline-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/splinetool/spline-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA7CDEF72BFBCBA400200386 /* SplineRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA7CDEF52BFBCB9D00200386 /* XCRemoteSwiftPackageReference "spline-ios" */;
+			productName = SplineRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA7CDEC02BFBCB6600200386 /* Project object */;
 }
