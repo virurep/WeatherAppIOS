@@ -60,21 +60,41 @@ struct WeatherView: View {
 }
 
 struct HeaderView: View {
-	var city: String
-	
-	var body: some View {
-		VStack {
-			Text(city)
-				.font(.custom("OktahRound-BdIt", size: 40))
-				.foregroundColor(Color.darkPurple)
-			
-			Text("Monday, May 20")
-				.font(.custom("OktahRound-BdIt", size: 16))
-				.foregroundColor(Color.darkPurple)
-		}
-		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-	}
+    var city: String
+    
+    var body: some View {
+        HStack {
+            Button(action: {
+                // Add action for the hamburger menu here
+            }) {
+                Image("hamburgerMenu")
+                    .resizable()
+                    .frame(width: 48, height: 48)
+                    .foregroundColor(Color.darkPurple)
+                    .padding()
+            }
+            
+            Spacer()
+            
+            VStack {
+                Text(city)
+                    .font(.custom("OktahRound-BdIt", size: 40))
+                    .foregroundColor(Color.darkPurple)
+                
+                Text("Monday, May 20")
+                    .font(.custom("OktahRound-BdIt", size: 16))
+                    .foregroundColor(Color.darkPurple)
+            }
+            
+            Spacer()
+            
+            // Add additional space on the right to balance the layout
+            Spacer().frame(width: 90)
+        }
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+    }
 }
+
 
 struct WeatherIconView: View {
 	var temp: Int
@@ -213,3 +233,4 @@ struct WeatherDetailsView: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
 	}
 }
+
