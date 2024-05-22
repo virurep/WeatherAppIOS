@@ -6,7 +6,7 @@ extension Color {
 	static let customBlue = Color(red: 0.455, green: 0.682, blue: 0.871)
 	static let customBlackOpacity = Color.black.opacity(0.7)
 	static let darkPurple = Color(red: 0.196, green: 0.118, blue: 0.376)
-    static let lightBlue = Color(red: 0.631, green: 0.8, blue: 0.937)
+	static let lightBlue = Color(red: 0.631, green: 0.8, blue: 0.937)
 	
 	
 }
@@ -34,9 +34,9 @@ struct WeatherView: View {
 						HeaderView(city: weather.name)
 							.padding(.top, 60)
 							.ignoresSafeArea(edges: .top)
-
-						Spacer(minLength: 220)
-
+						
+						Spacer(minLength: 180)
+						
 						WeatherIconView(temp: Int(weather.main.temp), description: weather.weather[0].main)
 							.frame(maxWidth: .infinity)
 							.padding(.bottom, 15)
@@ -55,7 +55,7 @@ struct WeatherView: View {
 				refreshAction()
 			}
 		}
-		.ignoresSafeArea(.all) // Changed from .bottom to .all to extend to the bottom of the screen
+		.ignoresSafeArea(.all)
 	}
 }
 
@@ -110,10 +110,18 @@ struct WeatherDetailsView: View {
 				.padding(.leading, 40)
 				.frame(maxWidth: .infinity, alignment: .leading)
 			
-			HStack(spacing: 20) {
+			HStack {
 				HStack {
-					Image(systemName: "thermometer")
-						.foregroundColor(Color.darkPurple)
+					Circle()
+						.fill(Color.darkPurple)
+						.frame(width: 40, height: 40)
+						.overlay(
+							Image("feelsLike")
+								.resizable()
+								.scaledToFit()
+								.padding(7)
+						)
+					
 					VStack(alignment: .leading) {
 						Text("Feels Like")
 							.font(.custom("OktahRound-BdIt", size: 16))
@@ -123,9 +131,21 @@ struct WeatherDetailsView: View {
 							.foregroundColor(Color.darkPurple)
 					}
 				}
+				.padding(.leading, 40)
+				.frame(maxWidth: .infinity, alignment: .leading)
+				
+				Spacer()
 				HStack {
-					Image(systemName: "cloud.rain")
-						.foregroundColor(Color.darkPurple)
+					Circle()
+						.fill(Color.darkPurple)
+						.frame(width: 40, height: 40)
+						.overlay(
+							Image("precipitation")
+								.resizable()
+								.scaledToFit()
+								.padding(5)
+						)
+					
 					VStack(alignment: .leading) {
 						Text("Precipitation")
 							.font(.custom("OktahRound-BdIt", size: 16))
@@ -135,13 +155,24 @@ struct WeatherDetailsView: View {
 							.foregroundColor(Color.darkPurple)
 					}
 				}
+				.padding(.trailing, 40)
+				.frame(maxWidth: .infinity, alignment: .trailing)
 			}
-			.frame(maxWidth: .infinity, alignment: .center)
+			.frame(maxWidth: .infinity)
 			
-			HStack(spacing: 20) {
+			HStack {
 				HStack {
-					Image(systemName: "sun.max")
-						.foregroundColor(Color.darkPurple)
+					
+					Circle()
+						.fill(Color.darkPurple)
+						.frame(width: 40, height: 40)
+						.overlay(
+							Image("uvIndex")
+								.resizable()
+								.scaledToFit()
+								.padding(7)
+						)
+					
 					VStack(alignment: .leading) {
 						Text("UV Index")
 							.font(.custom("OktahRound-BdIt", size: 16))
@@ -151,9 +182,20 @@ struct WeatherDetailsView: View {
 							.foregroundColor(Color.darkPurple)
 					}
 				}
+				.padding(.leading, 40)
+				
+				Spacer()
 				HStack {
-					Image(systemName: "wind")
-						.foregroundColor(Color.darkPurple)
+					Circle()
+						.fill(Color.darkPurple)
+						.frame(width: 40, height: 40)
+						.overlay(
+							Image("wind")
+								.resizable()
+								.scaledToFit()
+								.padding(8)
+						)
+					
 					VStack(alignment: .leading) {
 						Text("Wind")
 							.font(.custom("OktahRound-BdIt", size: 16))
@@ -163,6 +205,7 @@ struct WeatherDetailsView: View {
 							.foregroundColor(Color.darkPurple)
 					}
 				}
+				.padding(.trailing, 70)
 			}
 			.frame(maxWidth: .infinity)
 		}
