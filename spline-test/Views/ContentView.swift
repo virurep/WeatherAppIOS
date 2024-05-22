@@ -35,7 +35,7 @@ struct ContentView: View {
             }
             Spacer()
         }
-        .ignoresSafeArea(edges: .bottom)
+        .ignoresSafeArea(edges: .all)
         .background(Color(red: 116/255, green: 174/255, blue: 222/255))
     }
     

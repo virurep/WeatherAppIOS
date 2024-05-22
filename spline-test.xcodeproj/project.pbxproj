@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA8E30942BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA8E30932BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf */; };
 		FA644ECB2BFC3F800007430F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECA2BFC3F800007430F /* LocationManager.swift */; };
 		FA644ECE2BFC42EE0007430F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECD2BFC42EE0007430F /* WelcomeView.swift */; };
 		FA644ED02BFC48490007430F /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECF2BFC48490007430F /* LoadingScreen.swift */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA8E30932BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oktah_round_bold_italic-BF6407f0ed72273.otf"; sourceTree = "<group>"; };
+		AA8E30952BFDB8B1002B7D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FA644ECA2BFC3F800007430F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FA644ECD2BFC42EE0007430F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		FA644ECF2BFC48490007430F /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
@@ -87,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA8E30912BFDB57A002B7D71 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AA8E30932BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		FA644EC92BFC3F400007430F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,7 +144,9 @@
 		FA7CDECA2BFBCB6600200386 /* spline-test */ = {
 			isa = PBXGroup;
 			children = (
+				AA8E30952BFDB8B1002B7D71 /* Info.plist */,
 				FA644ECC2BFC42AF0007430F /* Views */,
+				AA8E30912BFDB57A002B7D71 /* fonts */,
 				FA644EC92BFC3F400007430F /* Managers */,
 				FA7CDECB2BFBCB6600200386 /* spline_testApp.swift */,
 				FA7CDECF2BFBCB6800200386 /* Assets.xcassets */,
@@ -284,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA8E30942BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf in Resources */,
 				FA7CDED32BFBCB6800200386 /* Preview Assets.xcassets in Resources */,
 				FA7CDED02BFBCB6800200386 /* Assets.xcassets in Resources */,
 			);
@@ -485,6 +499,8 @@
 				DEVELOPMENT_TEAM = 4ASXVDJ7H9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "spline-test/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Weather;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -515,6 +531,8 @@
 				DEVELOPMENT_TEAM = 4ASXVDJ7H9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "spline-test/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Weather;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
