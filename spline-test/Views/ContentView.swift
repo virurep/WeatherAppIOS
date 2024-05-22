@@ -56,13 +56,13 @@ struct ContentView: View {
     }
 }
 
-private func fetchForecast(for location: CLLocationCoordinate2D) async {
-    do {
-        forecast = try await dailyForecastManager.getForecastWeather(latitude: location.latitude, longitude: location.longitude)
-    } catch {
-        print("Error getting forecast: \(error)")
-    }
-}
+//private func fetchForecast(for location: CLLocationCoordinate2D) async {
+//    do {
+//        forecast = try await dailyForecastManager.getForecastWeather(latitude: location.latitude, longitude: location.longitude)
+//    } catch {
+//        print("Error getting forecast: \(error)")
+//    }
+//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
