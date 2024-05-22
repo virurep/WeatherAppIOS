@@ -6,6 +6,7 @@ extension Color {
 	static let customBlue = Color(red: 0.455, green: 0.682, blue: 0.871)
 	static let customBlackOpacity = Color.black.opacity(0.7)
 	static let darkPurple = Color(red: 0.196, green: 0.118, blue: 0.376)
+    static let lightBlue = Color(red: 0.631, green: 0.8, blue: 0.937)
 	
 	
 }
@@ -38,11 +39,11 @@ struct WeatherView: View {
 
 						WeatherIconView(temp: Int(weather.main.temp), description: weather.weather[0].main)
 							.frame(maxWidth: .infinity)
-							.padding(.bottom, 30)
+							.padding(.bottom, 15)
 						
 						WeatherDetailsView()
 							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-							.background(RoundedRectangle(cornerRadius: 20).fill(Color.white).edgesIgnoringSafeArea(.all))
+							.background(RoundedRectangle(cornerRadius: 20).fill(Color.lightBlue).edgesIgnoringSafeArea(.all))
 					}
 					
 					.frame(minHeight: geometry.size.height)
@@ -54,7 +55,7 @@ struct WeatherView: View {
 				refreshAction()
 			}
 		}
-		.ignoresSafeArea(edges: .bottom)
+		.ignoresSafeArea(.all) // Changed from .bottom to .all to extend to the bottom of the screen
 	}
 }
 
@@ -106,7 +107,7 @@ struct WeatherDetailsView: View {
 				.foregroundColor(Color.darkPurple)
 				.padding(.bottom, 10)
 				.padding(.top, 10)
-				.padding(.leading, 20)
+				.padding(.leading, 40)
 				.frame(maxWidth: .infinity, alignment: .leading)
 			
 			HStack(spacing: 20) {
@@ -118,7 +119,7 @@ struct WeatherDetailsView: View {
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
 						Text("65°")
-							.font(.custom("OktahRound-BdIt", size: 16))
+							.font(.custom("OktahRound-BdIt", size: 24))
 							.foregroundColor(Color.darkPurple)
 					}
 				}
@@ -130,7 +131,7 @@ struct WeatherDetailsView: View {
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
 						Text("95%")
-							.font(.custom("OktahRound-BdIt", size: 16))
+							.font(.custom("OktahRound-BdIt", size: 24))
 							.foregroundColor(Color.darkPurple)
 					}
 				}
@@ -146,7 +147,7 @@ struct WeatherDetailsView: View {
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
 						Text("5")
-							.font(.custom("OktahRound-BdIt", size: 16))
+							.font(.custom("OktahRound-BdIt", size: 24))
 							.foregroundColor(Color.darkPurple)
 					}
 				}
@@ -158,14 +159,14 @@ struct WeatherDetailsView: View {
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
 						Text("6 mph")
-							.font(.custom("OktahRound-BdIt", size: 16))
+							.font(.custom("OktahRound-BdIt", size: 24))
 							.foregroundColor(Color.darkPurple)
 					}
 				}
 			}
 			.frame(maxWidth: .infinity)
 		}
-		.background(RoundedRectangle(cornerRadius: 20).fill(Color.white))
-		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+		.background(RoundedRectangle(cornerRadius: 20).fill(Color.lightBlue))
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
 	}
 }
