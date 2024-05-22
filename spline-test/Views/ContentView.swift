@@ -1,10 +1,13 @@
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
     
     @StateObject var locationManager = LocationManager()
     var weatherManager = WeatherManager()
+    var dailyForecastManager = DailyForecastManager()
     @State var weather: ResponseBody?
+    @State var forecast: ResponseBodyForecast?
     @State private var isRefreshing = false
     
     var body: some View {
@@ -12,26 +15,14 @@ struct ContentView: View {
             if let location = locationManager.location {
                 if isRefreshing {
                     LoadingScreen()
-                } else if let weather_ = weather {
-                    WeatherView(weather: weather!, refreshAction: {
-                        isRefreshing = true
-                        Task {
-                            do {
-                                weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-                            } catch {
-                                print("Error getting weather: \(error)")
-                            }
-                            isRefreshing = false
-                        }
+                } else if let weather = weather {
+                    WeatherView(weather: weather, refreshAction: {
+                        refreshWeather(for: location)
                     })
                 } else {
                     LoadingScreen()
                         .task {
-                            do {
-                                weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-                            } catch {
-                                print("Error getting weather: \(error)")
-                            }
+                            await fetchWeather(for: location)
                         }
                 }
             } else {
@@ -47,6 +38,30 @@ struct ContentView: View {
         .ignoresSafeArea(edges: .bottom)
         .background(Color(red: 116/255, green: 174/255, blue: 222/255))
     }
+    
+    private func refreshWeather(for location: CLLocationCoordinate2D) {
+        isRefreshing = true
+        Task {
+            await fetchWeather(for: location)
+            isRefreshing = false
+        }
+    }
+    
+    private func fetchWeather(for location: CLLocationCoordinate2D) async {
+        do {
+            weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+        } catch {
+            print("Error getting weather: \(error)")
+        }
+    }
+}
+
+private func fetchForecast(for location: CLLocationCoordinate2D) async {
+    do {
+        forecast = try await dailyForecastManager.getForecastWeather(latitude: location.latitude, longitude: location.longitude)
+    } catch {
+        print("Error getting forecast: \(error)")
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -54,3 +69,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
