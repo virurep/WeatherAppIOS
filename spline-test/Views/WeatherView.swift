@@ -37,11 +37,11 @@ struct WeatherView: View {
 						
 						Spacer(minLength: 180)
 						
-						WeatherIconView(temp: Int(weather.main.temp), description: weather.weather[0].main)
+                        WeatherIconView(temp: Int(weather.main.temp), description: weather.weather[0].main, tempHigh: Int(weather.main.tempMax), tempLow: Int(weather.main.tempMin))
 							.frame(maxWidth: .infinity)
 							.padding(.bottom, 15)
 						
-						WeatherDetailsView()
+                        WeatherDetailsView(feelsLike: Int(weather.main.feelsLike), humidity: Int(weather.main.humidity), wind: Int(weather.wind.speed), pressure: Int(weather.main.pressure))
 							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 							.background(RoundedRectangle(cornerRadius: 20).fill(Color.lightBlue).edgesIgnoringSafeArea(.all))
 					}
@@ -99,6 +99,8 @@ struct HeaderView: View {
 struct WeatherIconView: View {
 	var temp: Int
 	var description: String
+    var tempHigh: Int
+    var tempLow: Int
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -112,7 +114,7 @@ struct WeatherIconView: View {
 				.padding(.top, -20)
 				.foregroundColor(Color.darkPurple)
 			
-			Text("High 71° | Low 60°")
+			Text("High \(tempHigh)° | Low \(tempLow)°")
 				.font(.custom("OktahRound-BdIt", size: 16))
 				.foregroundColor(Color.darkPurple)
 		}
@@ -120,6 +122,11 @@ struct WeatherIconView: View {
 }
 
 struct WeatherDetailsView: View {
+    var feelsLike: Int
+    var humidity: Int
+    var wind: Int
+    var pressure: Int
+    
 	var body: some View {
 		VStack(alignment: .leading) {
 			Text("Weather Now")
@@ -146,7 +153,7 @@ struct WeatherDetailsView: View {
 						Text("Feels Like")
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
-						Text("65°")
+						Text("\(feelsLike)°")
 							.font(.custom("OktahRound-BdIt", size: 24))
 							.foregroundColor(Color.darkPurple)
 					}
@@ -167,10 +174,10 @@ struct WeatherDetailsView: View {
 						)
 					
 					VStack(alignment: .leading) {
-						Text("Precipitation")
+						Text("Humidity")
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
-						Text("95%")
+						Text("\(humidity)%")
 							.font(.custom("OktahRound-BdIt", size: 24))
 							.foregroundColor(Color.darkPurple)
 					}
@@ -194,10 +201,10 @@ struct WeatherDetailsView: View {
 						)
 					
 					VStack(alignment: .leading) {
-						Text("UV Index")
+						Text("Air Pressure")
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
-						Text("5")
+						Text("\(pressure)")
 							.font(.custom("OktahRound-BdIt", size: 24))
 							.foregroundColor(Color.darkPurple)
 					}
@@ -220,7 +227,7 @@ struct WeatherDetailsView: View {
 						Text("Wind")
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
-						Text("6 mph")
+						Text("\(wind) mph")
 							.font(.custom("OktahRound-BdIt", size: 24))
 							.foregroundColor(Color.darkPurple)
 					}

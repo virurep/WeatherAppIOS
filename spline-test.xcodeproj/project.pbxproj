@@ -15,6 +15,7 @@
 		FA644ED42BFC60850007430F /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ED32BFC60850007430F /* WeatherView.swift */; };
 		FA644ED62BFE93470007430F /* DailyForecastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ED52BFE93470007430F /* DailyForecastManager.swift */; };
 		FA644ED82BFE94BF0007430F /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ED72BFE94BF0007430F /* ForecastView.swift */; };
+		FA644EDB2BFEA3670007430F /* SplineRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = FA644EDA2BFEA3670007430F /* SplineRuntime */; };
 		FA7CDECC2BFBCB6600200386 /* spline_testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDECB2BFBCB6600200386 /* spline_testApp.swift */; };
 		FA7CDECE2BFBCB6600200386 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDECD2BFBCB6600200386 /* ContentView.swift */; };
 		FA7CDED02BFBCB6800200386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA7CDECF2BFBCB6800200386 /* Assets.xcassets */; };
@@ -22,7 +23,6 @@
 		FA7CDEDD2BFBCB6900200386 /* spline_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEDC2BFBCB6900200386 /* spline_testTests.swift */; };
 		FA7CDEE72BFBCB6900200386 /* spline_testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEE62BFBCB6900200386 /* spline_testUITests.swift */; };
 		FA7CDEE92BFBCB6900200386 /* spline_testUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEE82BFBCB6900200386 /* spline_testUITestsLaunchTests.swift */; };
-		FA7CDEF82BFBCBA400200386 /* SplineRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = FA7CDEF72BFBCBA400200386 /* SplineRuntime */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA7CDEF82BFBCBA400200386 /* SplineRuntime in Frameworks */,
+				FA644EDB2BFEA3670007430F /* SplineRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,7 +204,7 @@
 			);
 			name = "spline-test";
 			packageProductDependencies = (
-				FA7CDEF72BFBCBA400200386 /* SplineRuntime */,
+				FA644EDA2BFEA3670007430F /* SplineRuntime */,
 			);
 			productName = "spline-test";
 			productReference = FA7CDEC82BFBCB6600200386 /* spline-test.app */;
@@ -279,7 +279,7 @@
 			);
 			mainGroup = FA7CDEBF2BFBCB6600200386;
 			packageReferences = (
-				FA7CDEF52BFBCB9D00200386 /* XCRemoteSwiftPackageReference "spline-ios" */,
+				FA644ED92BFEA3580007430F /* XCRemoteSwiftPackageReference "spline-ios" */,
 			);
 			productRefGroup = FA7CDEC92BFBCB6600200386 /* Products */;
 			projectDirPath = "";
@@ -670,7 +670,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FA7CDEF52BFBCB9D00200386 /* XCRemoteSwiftPackageReference "spline-ios" */ = {
+		FA644ED92BFEA3580007430F /* XCRemoteSwiftPackageReference "spline-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/splinetool/spline-ios";
 			requirement = {
@@ -681,9 +681,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FA7CDEF72BFBCBA400200386 /* SplineRuntime */ = {
+		FA644EDA2BFEA3670007430F /* SplineRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FA7CDEF52BFBCB9D00200386 /* XCRemoteSwiftPackageReference "spline-ios" */;
+			package = FA644ED92BFEA3580007430F /* XCRemoteSwiftPackageReference "spline-ios" */;
 			productName = SplineRuntime;
 		};
 /* End XCSwiftPackageProductDependency section */

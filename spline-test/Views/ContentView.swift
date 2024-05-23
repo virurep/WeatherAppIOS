@@ -15,14 +15,18 @@ struct ContentView: View {
             if let location = locationManager.location {
                 if isRefreshing {
                     LoadingScreen()
-                } else if let weather = weather {
-                    WeatherView(weather: weather, refreshAction: {
-                        refreshWeather(for: location)
-                    })
+                }
+//                } else if let forecast = forecast {
+//                    ForecastView(forecast: forecast)
+                    else if let weather = weather {
+                                        WeatherView(weather: weather, refreshAction: {
+                                            refreshWeather(for: location)
+                                        })
                 } else {
                     LoadingScreen()
                         .task {
                             await fetchWeather(for: location)
+                            await fetchForecast(for: location)
                         }
                 }
             } else {
@@ -54,15 +58,18 @@ struct ContentView: View {
             print("Error getting weather: \(error)")
         }
     }
+    
+    private func fetchForecast(for location: CLLocationCoordinate2D) async {
+        do {
+            forecast = try await dailyForecastManager.getForecastWeather(latitude: location.latitude, longitude: location.longitude)
+        } catch {
+            print("Error getting forecast: \(error)")
+        }
+    }
+    
 }
 
-//private func fetchForecast(for location: CLLocationCoordinate2D) async {
-//    do {
-//        forecast = try await dailyForecastManager.getForecastWeather(latitude: location.latitude, longitude: location.longitude)
-//    } catch {
-//        print("Error getting forecast: \(error)")
-//    }
-//}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
