@@ -9,19 +9,19 @@ struct ContentView: View {
     @State var weather: ResponseBody?
     @State var forecast: ResponseBodyForecast?
     @State private var isRefreshing = false
+    @State private var showForecast = false
     
     var body: some View {
         VStack {
             if let location = locationManager.location {
                 if isRefreshing {
                     LoadingScreen()
-                }
-//                } else if let forecast = forecast {
-//                    ForecastView(forecast: forecast)
-                    else if let weather = weather {
-                                        WeatherView(weather: weather, refreshAction: {
-                                            refreshWeather(for: location)
-                                        })
+                } else if showForecast, let forecast = forecast {
+                    ForecastView(forecast: forecast)
+                } else if let weather = weather {
+                    WeatherView(weather: weather, refreshAction: {
+                        refreshWeather(for: location)
+                    }, showForecast: $showForecast)
                 } else {
                     LoadingScreen()
                         .task {
@@ -66,8 +66,8 @@ struct ContentView: View {
             print("Error getting forecast: \(error)")
         }
     }
-    
 }
+
 
 
 

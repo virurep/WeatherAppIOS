@@ -12,88 +12,112 @@ extension Color {
 }
 
 struct WeatherView: View {
-	var weather: ResponseBody
-	var refreshAction: () -> Void
-	
-	var body: some View {
-		GeometryReader { geometry in
-			ScrollView {
-				ZStack {
-					// Fetching from cloud
-					let url = URL(string: "https://build.spline.design/LcgX-F1ByWjAJ1iYKWFO/scene.splineswift")!
-					
-					// Spline View
-					if let splineView = try? SplineView(sceneFileURL: url) {
-						splineView.ignoresSafeArea(.all)
-					} else {
-						Text("Failed to load Spline view")
-							.ignoresSafeArea(.all)
-					}
-					
-					VStack {
-						HeaderView(city: weather.name)
-							.padding(.top, 60)
-							.ignoresSafeArea(edges: .top)
-						
-						Spacer(minLength: 180)
-						
+    var weather: ResponseBody
+    var refreshAction: () -> Void
+    @Binding var showForecast: Bool
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ScrollView {
+                ZStack {
+                    let url = URL(string: "https://build.spline.design/LcgX-F1ByWjAJ1iYKWFO/scene.splineswift")!
+                    
+                    if let splineView = try? SplineView(sceneFileURL: url) {
+                        splineView.ignoresSafeArea(.all)
+                    } else {
+                        Text("Failed to load Spline view")
+                            .ignoresSafeArea(.all)
+                    }
+                    
+                    VStack {
+                        HeaderView(city: weather.name, showForecast: $showForecast)
+                            .padding(.top, 60)
+                            .ignoresSafeArea(edges: .top)
+                        
+                        Spacer(minLength: 180)
+                        
                         WeatherIconView(temp: Int(weather.main.temp), description: weather.weather[0].main, tempHigh: Int(weather.main.tempMax), tempLow: Int(weather.main.tempMin))
-							.frame(maxWidth: .infinity)
-							.padding(.bottom, 15)
-						
+                            .frame(maxWidth: .infinity)
+                            .padding(.bottom, 15)
+                        
                         WeatherDetailsView(feelsLike: Int(weather.main.feelsLike), humidity: Int(weather.main.humidity), wind: Int(weather.wind.speed), pressure: Int(weather.main.pressure))
-							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-							.background(RoundedRectangle(cornerRadius: 20).fill(Color.lightBlue).edgesIgnoringSafeArea(.all))
-					}
-					
-					.frame(minHeight: geometry.size.height)
-					
-				}
-				.frame(maxWidth: .infinity, maxHeight: .infinity)
-			}
-			.refreshable {
-				refreshAction()
-			}
-		}
-		.ignoresSafeArea(.all)
-	}
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                            .background(RoundedRectangle(cornerRadius: 20).fill(Color.lightBlue).edgesIgnoringSafeArea(.all))
+                    }
+                    
+                    .frame(minHeight: geometry.size.height)
+                    
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .refreshable {
+                refreshAction()
+            }
+        }
+        .ignoresSafeArea(.all)
+    }
 }
 
 struct HeaderView: View {
     var city: String
+    @Binding var showForecast: Bool
+    @State private var showMenu = false
     
     var body: some View {
-        HStack {
-            Button(action: {
-                // Add action for the hamburger menu here
-            }) {
-                Image("hamburgerMenu")
-                    .resizable()
-                    .frame(width: 48, height: 48)
-                    .foregroundColor(Color.darkPurple)
-                    .padding()
-            }
-            
-            Spacer()
-            
-            VStack {
-                Text(city)
-                    .font(.custom("OktahRound-BdIt", size: 40))
-                    .foregroundColor(Color.darkPurple)
+        VStack {
+            HStack {
+                Menu {
+                    Button(action: {
+                        showForecast = true
+                    }) {
+                        Label("Daily Forecast", systemImage: "calendar")
+                    }
+                    Button(action: {
+                        
+                    }) {
+                        Label("Hourly Forecast", systemImage: "clock")
+                    }
+                    Button(action: {
+                        
+                    }) {
+                        Label("Profile", systemImage: "person")
+                    }
+
+                } label: {
+                    Image("hamburgerMenu")
+                        .resizable()
+                        .frame(width: 48, height: 48)
+                        .foregroundColor(Color.darkPurple)
+                        .padding()
+                }
                 
-                Text("Monday, May 20")
-                    .font(.custom("OktahRound-BdIt", size: 16))
-                    .foregroundColor(Color.darkPurple)
+                Spacer()
+                
+                VStack {
+                    Text(city)
+                        .font(.custom("OktahRound-BdIt", size: 40))
+                        .foregroundColor(Color.darkPurple)
+                    
+                    Text(currentDateString)
+                        .font(.custom("OktahRound-BdIt", size: 16))
+                        .foregroundColor(Color.darkPurple)
+                }
+                
+                Spacer()
+                
+                Spacer().frame(width: 90)
             }
-            
-            Spacer()
-            
-            // Add additional space on the right to balance the layout
-            Spacer().frame(width: 90)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
-				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+    }
+    
+    private var currentDateString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d"
+        return dateFormatter.string(from: Date())
     }
 }
+
 
 
 struct WeatherIconView: View {

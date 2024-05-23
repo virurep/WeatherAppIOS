@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ForecastView: View {
-    var forecast: ResponseBodyForecast
+    @State var forecast: ResponseBodyForecast
 
     var body: some View {
         ScrollView {
