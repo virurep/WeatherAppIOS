@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoadingScreen: View {
     var body: some View {
+        Image("chicken no background")
         ProgressView()
             .progressViewStyle(CircularProgressViewStyle(tint: .white))
             .frame(maxWidth: .infinity, maxHeight: .infinity)

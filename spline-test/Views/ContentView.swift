@@ -16,8 +16,8 @@ struct ContentView: View {
             if let location = locationManager.location {
                 if isRefreshing {
                     LoadingScreen()
-                } else if showForecast, let forecast = forecast {
-                    ForecastView(forecast: forecast)
+                } else if showForecast {
+                    HourlyView()
                 } else if let weather = weather {
                     WeatherView(weather: weather, refreshAction: {
                         refreshWeather(for: location)
