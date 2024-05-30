@@ -206,7 +206,7 @@ struct WeatherDetailsView: View {
 							.foregroundColor(Color.darkPurple)
 					}
 				}
-				.padding(.trailing, 40)
+				.padding(.trailing, 45)
 				.frame(maxWidth: .infinity, alignment: .trailing)
 			}
 			.frame(maxWidth: .infinity)
@@ -228,9 +228,13 @@ struct WeatherDetailsView: View {
 						Text("Air Pressure")
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
-						Text("\(pressure)")
+						Text("\(pressure) ")
 							.font(.custom("OktahRound-BdIt", size: 24))
+							.foregroundColor(Color.darkPurple) +
+						Text("atm")
+							.font(.custom("OktahRound-BdIt", size: 12))
 							.foregroundColor(Color.darkPurple)
+							
 					}
 				}
 				.padding(.leading, 40)
@@ -251,8 +255,11 @@ struct WeatherDetailsView: View {
 						Text("Wind")
 							.font(.custom("OktahRound-BdIt", size: 16))
 							.foregroundColor(Color.darkPurple)
-						Text("\(wind) mph")
+						Text("\(wind) ")
 							.font(.custom("OktahRound-BdIt", size: 24))
+							.foregroundColor(Color.darkPurple) +
+						Text("mph")
+							.font(.custom("OktahRound-BdIt", size: 12))
 							.foregroundColor(Color.darkPurple)
 					}
 				}
