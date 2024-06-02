@@ -111,7 +111,6 @@
 
 
 
-
 import SwiftUI
 
 struct SearchView: View {
@@ -137,6 +136,7 @@ struct SearchView: View {
                         .cornerRadius(10)
                         .foregroundColor(Color.darkPurple)
                         .padding(.bottom, 8)
+                        .transition(.opacity) // Fade-in animation
                     }
                     Spacer()
                 }
@@ -154,9 +154,11 @@ struct SearchView: View {
                             .cornerRadius(10)
                     }
                     .padding()
+                    .transition(.opacity) // Fade-in animation
                 } else {
                     if let weather = viewModel.weather {
                         SearchWeatherView(weather: weather)
+                            .transition(.move(edge: .bottom)) // Slide-in animation from bottom
                     } else if let error = viewModel.error {
                         Text("Error: \(error.localizedDescription)")
                             .font(.custom("OktahRound-BdIt", size: 16))
@@ -170,24 +172,31 @@ struct SearchView: View {
             
             if !isSearching {
                 Button(action: {
-                    isSearching = true
+                    withAnimation(.easeInOut) {
+                        isSearching = true
+                    }
                 }) {
                     Image(systemName: "magnifyingglass")
                         .font(.title2)
                         .foregroundColor(.white)
                         .padding()
+                        .scaleEffect(isSearching ? 1.0 : 1.2) // Scale effect animation
+                        .animation(.spring(), value: isSearching)
                 }
                 .padding(.top, 40)
                 .padding(.trailing, 20)
             }
         }
         .navigationBarHidden(true)
+        .animation(.default, value: isSearching) // Applying the default animation
     }
 
     private func search() {
         Task {
             await viewModel.searchWeather()
-            isSearching = false
+            withAnimation {
+                isSearching = false
+            }
             hideKeyboard()
         }
     }
