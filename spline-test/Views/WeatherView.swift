@@ -15,6 +15,7 @@ struct WeatherView: View {
     var weather: ResponseBody
     var refreshAction: () -> Void
     @Binding var showForecast: Bool
+//    @Binding var showHome: Bool
     
     var body: some View {
         GeometryReader { geometry in
@@ -68,6 +69,10 @@ struct HeaderView: View {
             HStack {
                 Menu {
                     Button(action: {
+                    }) {
+                        Label("Home", systemImage: "house")
+                    }
+                    Button(action: {
                         showForecast = true
                     }) {
                         Label("Daily Forecast", systemImage: "calendar")
@@ -81,6 +86,10 @@ struct HeaderView: View {
                         
                     }) {
                         Label("Profile", systemImage: "person")
+                    }
+                    Button(action: {
+                    }) {
+                        Label("Search", systemImage: "magnifyingglass")
                     }
 
                 } label: {
