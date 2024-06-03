@@ -15,7 +15,6 @@
 		FA644ED42BFC60850007430F /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ED32BFC60850007430F /* WeatherView.swift */; };
 		FA644ED62BFE93470007430F /* DailyForecastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ED52BFE93470007430F /* DailyForecastManager.swift */; };
 		FA644ED82BFE94BF0007430F /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ED72BFE94BF0007430F /* ForecastView.swift */; };
-		FA644EDB2BFEA3670007430F /* SplineRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = FA644EDA2BFEA3670007430F /* SplineRuntime */; };
 		FA644EDD2C04185A0007430F /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644EDC2C04185A0007430F /* SearchManager.swift */; };
 		FA644EDF2C07CB7C0007430F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644EDE2C07CB7C0007430F /* SearchView.swift */; };
 		FA7CDECC2BFBCB6600200386 /* spline_testApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDECB2BFBCB6600200386 /* spline_testApp.swift */; };
@@ -25,8 +24,6 @@
 		FA7CDEDD2BFBCB6900200386 /* spline_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEDC2BFBCB6900200386 /* spline_testTests.swift */; };
 		FA7CDEE72BFBCB6900200386 /* spline_testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEE62BFBCB6900200386 /* spline_testUITests.swift */; };
 		FA7CDEE92BFBCB6900200386 /* spline_testUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEE82BFBCB6900200386 /* spline_testUITestsLaunchTests.swift */; };
-		FA8E03912C07DF07001F88D5 /* HourlyForecastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E03902C07DF07001F88D5 /* HourlyForecastManager.swift */; };
-		FA8E03932C07E520001F88D5 /* HourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E03922C07E520001F88D5 /* HourlyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +65,6 @@
 		FA7CDEE22BFBCB6900200386 /* spline-testUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "spline-testUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7CDEE62BFBCB6900200386 /* spline_testUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spline_testUITests.swift; sourceTree = "<group>"; };
 		FA7CDEE82BFBCB6900200386 /* spline_testUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spline_testUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FA8E03902C07DF07001F88D5 /* HourlyForecastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastManager.swift; sourceTree = "<group>"; };
-		FA8E03922C07E520001F88D5 /* HourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +72,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA644EDB2BFEA3670007430F /* SplineRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +107,6 @@
 				FA644ED12BFC4AC70007430F /* WeatherManager.swift */,
 				FA644ED52BFE93470007430F /* DailyForecastManager.swift */,
 				FA644EDC2C04185A0007430F /* SearchManager.swift */,
-				FA8E03902C07DF07001F88D5 /* HourlyForecastManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -127,7 +120,6 @@
 				FA644ED32BFC60850007430F /* WeatherView.swift */,
 				FA644EDE2C07CB7C0007430F /* SearchView.swift */,
 				FA644ED72BFE94BF0007430F /* ForecastView.swift */,
-				FA8E03922C07E520001F88D5 /* HourlyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,7 +208,6 @@
 			);
 			name = "spline-test";
 			packageProductDependencies = (
-				FA644EDA2BFEA3670007430F /* SplineRuntime */,
 			);
 			productName = "spline-test";
 			productReference = FA7CDEC82BFBCB6600200386 /* spline-test.app */;
@@ -291,7 +282,7 @@
 			);
 			mainGroup = FA7CDEBF2BFBCB6600200386;
 			packageReferences = (
-				FA644ED92BFEA3580007430F /* XCRemoteSwiftPackageReference "spline-ios" */,
+				FA8E039A2C0D88BF001F88D5 /* XCRemoteSwiftPackageReference "spline-ios" */,
 			);
 			productRefGroup = FA7CDEC92BFBCB6600200386 /* Products */;
 			projectDirPath = "";
@@ -344,11 +335,9 @@
 				FA644ED82BFE94BF0007430F /* ForecastView.swift in Sources */,
 				FA644ECB2BFC3F800007430F /* LocationManager.swift in Sources */,
 				FA644EDD2C04185A0007430F /* SearchManager.swift in Sources */,
-				FA8E03932C07E520001F88D5 /* HourlyView.swift in Sources */,
 				FA644ED42BFC60850007430F /* WeatherView.swift in Sources */,
 				FA644ECE2BFC42EE0007430F /* WelcomeView.swift in Sources */,
 				FA644EDF2C07CB7C0007430F /* SearchView.swift in Sources */,
-				FA8E03912C07DF07001F88D5 /* HourlyForecastManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,7 +675,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FA644ED92BFEA3580007430F /* XCRemoteSwiftPackageReference "spline-ios" */ = {
+		FA8E039A2C0D88BF001F88D5 /* XCRemoteSwiftPackageReference "spline-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/splinetool/spline-ios";
 			requirement = {
@@ -695,14 +684,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		FA644EDA2BFEA3670007430F /* SplineRuntime */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FA644ED92BFEA3580007430F /* XCRemoteSwiftPackageReference "spline-ios" */;
-			productName = SplineRuntime;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA7CDEC02BFBCB6600200386 /* Project object */;
 }
