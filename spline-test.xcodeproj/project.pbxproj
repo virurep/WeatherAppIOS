@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA8E30942BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA8E30932BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf */; };
+		D169BE252C0E714100FE35C6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169BE242C0E714100FE35C6 /* ProfileView.swift */; };
 		FA644ECB2BFC3F800007430F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECA2BFC3F800007430F /* LocationManager.swift */; };
 		FA644ECE2BFC42EE0007430F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECD2BFC42EE0007430F /* WelcomeView.swift */; };
 		FA644ED02BFC48490007430F /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECF2BFC48490007430F /* LoadingScreen.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		AA8E30932BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oktah_round_bold_italic-BF6407f0ed72273.otf"; sourceTree = "<group>"; };
 		AA8E30952BFDB8B1002B7D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D169BE242C0E714100FE35C6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		FA644ECA2BFC3F800007430F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FA644ECD2BFC42EE0007430F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		FA644ECF2BFC48490007430F /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				FA644EDE2C07CB7C0007430F /* SearchView.swift */,
 				FA644ED72BFE94BF0007430F /* ForecastView.swift */,
 				FA8E03922C07E520001F88D5 /* HourlyView.swift */,
+				D169BE242C0E714100FE35C6 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				FA644ED42BFC60850007430F /* WeatherView.swift in Sources */,
 				FA644ECE2BFC42EE0007430F /* WelcomeView.swift in Sources */,
 				FA644EDF2C07CB7C0007430F /* SearchView.swift in Sources */,
+				D169BE252C0E714100FE35C6 /* ProfileView.swift in Sources */,
 				FA8E03912C07DF07001F88D5 /* HourlyForecastManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

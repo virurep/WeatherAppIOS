@@ -17,8 +17,10 @@ struct ContentView: View {
                 if isRefreshing {
                     LoadingScreen()
                 } else if showForecast, let forecast = forecast {
+                    //Comment or uncomment as needed:
 //                    ForecastView(forecast: forecast, showForecast: $showForecast)
-                    SearchView()
+//                    SearchView()
+                    ProfileView()
                 } else if let weather = weather {
                     WeatherView(weather: weather, refreshAction: {
                         refreshWeather(for: location)
