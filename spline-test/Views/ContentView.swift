@@ -21,9 +21,6 @@ struct ContentView: View {
 //                    ForecastView(forecast: forecast, showForecast: $showForecast)
 //                    SearchView()
                     ProfileView()
-                      ForecastView(forecast: forecast, showForecast: $showForecast)
-//                    SearchView()
-//                    HourlyView(latitude: location.latitude, longitude: location.longitude)
                 } else if let weather = weather {
                     WeatherView(weather: weather, refreshAction: {
                         refreshWeather(for: location)
