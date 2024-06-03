@@ -21,6 +21,9 @@ struct ContentView: View {
 //                    ForecastView(forecast: forecast, showForecast: $showForecast)
 //                    SearchView()
                     ProfileView()
+                      ForecastView(forecast: forecast, showForecast: $showForecast)
+//                    SearchView()
+//                    HourlyView(latitude: location.latitude, longitude: location.longitude)
                 } else if let weather = weather {
                     WeatherView(weather: weather, refreshAction: {
                         refreshWeather(for: location)
@@ -65,10 +68,13 @@ struct ContentView: View {
     private func fetchForecast(for location: CLLocationCoordinate2D) async {
         do {
             forecast = try await dailyForecastManager.getForecastWeather(latitude: location.latitude, longitude: location.longitude)
+            print()
         } catch {
             print("Error getting forecast: \(error)")
         }
     }
+
+
 }
 
 
