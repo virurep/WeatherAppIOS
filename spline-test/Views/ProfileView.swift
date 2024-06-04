@@ -6,33 +6,75 @@
 //
 import SwiftUI
 
+struct User: Identifiable, Codable {
+    let id: String
+    var fullname: String
+    var email: String
+    var image: UIImage?
+    
+
+    
+    var initials: String {
+        let formatter = PersonNameComponentsFormatter()
+        if let components = formatter.personNameComponents(from: fullname) {
+            formatter.style = .abbreviated
+            return formatter.string(from: components)
+        }
+        
+        return ""
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id, fullname, email
+    }
+
+    init(id: String, fullname: String, email: String, image: UIImage?) {
+        self.id = id
+        self.fullname = fullname
+        self.email = email
+        self.image = image
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        fullname = try container.decode(String.self, forKey: .fullname)
+        email = try container.decode(String.self, forKey: .email)
+        image = nil // You can't directly decode a UIImage from data, so it's set to nil here
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(fullname, forKey: .fullname)
+        try container.encode(email, forKey: .email)
+        // If you have a way to convert UIImage to Data and back, you can encode/decode image here
+    }
+}
+
 struct ProfileView: View {
-    @State private var name: String = "John Doe"
-    @State private var email: String = "johndoe@example.com"
-    @State private var password: String = "password123"
-    @State private var isPasswordVisible: Bool = false
-    @State private var profileImage: UIImage? = UIImage(systemName: "person.circle.fill")
+    @State private var user: User
     @State private var showImagePicker: Bool = false
-    @State private var locations: [String] = ["New York, USA", "San Francisco, USA", "Tokyo, Japan"]
-    @State private var newLocation: String = ""
+
+    init(user: User) {
+        self._user = State(initialValue: user)
+    }
 
     var body: some View {
         VStack(spacing: 20) {
             profileImageView
             editNameField
             editEmailField
-            editPasswordField
-            preferredLocationsSection
             Spacer()
             saveButton
         }
         .padding()
-        .background(Color.customBlue.edgesIgnoringSafeArea(.all))
+        .background(Color.blue.edgesIgnoringSafeArea(.all))
     }
 
     private var profileImageView: some View {
         VStack {
-            if let image = profileImage {
+            if let image = user.image {
                 Image(uiImage: image)
                     .resizable()
                     .frame(width: 100, height: 100)
@@ -42,92 +84,30 @@ struct ProfileView: View {
                 Image(systemName: "person.circle.fill")
                     .resizable()
                     .frame(width: 100, height: 100)
-                    .foregroundColor(Color.darkPurple)
+                    .foregroundColor(.gray)
                     .onTapGesture { showImagePicker = true }
             }
             Text("Click to edit")
                 .font(.custom("OktahRound-Md", size: 14))
-                .foregroundColor(.darkPurple)
+                .foregroundColor(.gray)
         }
         .padding(.top, 20)
         .sheet(isPresented: $showImagePicker) {
-            ImagePicker(image: $profileImage)
+            ImagePicker(image: $user.image)
         }
     }
 
     private var editNameField: some View {
-        TextField("Enter your name", text: $name)
+        TextField("Enter your name", text: $user.fullname)
             .font(.custom("OktahRound-BdIt", size: 24))
-            .foregroundColor(Color.darkPurple)
             .multilineTextAlignment(.center)
             .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 
     private var editEmailField: some View {
-        TextField("Enter your email", text: $email)
+        TextField("Enter your email", text: $user.email)
             .font(.custom("OktahRound-Md", size: 18))
-            .foregroundColor(Color.darkPurple)
             .textFieldStyle(RoundedBorderTextFieldStyle())
-    }
-
-    private var editPasswordField: some View {
-        HStack {
-            if isPasswordVisible {
-                TextField("Enter your password", text: $password)
-                    .font(.custom("OktahRound-Md", size: 18))
-                    .foregroundColor(Color.darkPurple)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            } else {
-                SecureField("Enter your password", text: $password)
-                    .font(.custom("OktahRound-Md", size: 18))
-                    .foregroundColor(Color.darkPurple)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            Button(action: { isPasswordVisible.toggle() }) {
-                Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
-                    .foregroundColor(.darkPurple)
-            }
-            .padding(.horizontal)
-        }
-    }
-
-    private var preferredLocationsSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Preferred Locations")
-                .font(.custom("OktahRound-BdIt", size: 24))
-                .foregroundColor(Color.darkPurple)
-
-            ForEach(locations, id: \.self) { location in
-                HStack {
-                    Text(location)
-                        .font(.custom("OktahRound-Md", size: 16))
-                        .foregroundColor(Color.darkPurple)
-                    Spacer()
-                    Button(action: { removeLocation(location) }) {
-                        Image(systemName: "minus.circle.fill")
-                            .foregroundColor(Color.darkPurple)
-                    }
-                }
-                .padding(.horizontal)
-            }
-
-            HStack {
-                TextField("Add new location", text: $newLocation)
-                    .font(.custom("OktahRound-Md", size: 16))
-                    .foregroundColor(Color.darkPurple)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button(action: addLocation) {
-                    Image(systemName: "plus.circle.fill")
-                        .foregroundColor(.white)
-                        .background(Color.darkPurple)
-                        .clipShape(Circle())
-                }
-                .padding(.horizontal)
-            }
-        }
-        .padding(.horizontal)
     }
 
     private var saveButton: some View {
@@ -137,29 +117,18 @@ struct ProfileView: View {
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.darkPurple)
+                .background(Color.green)
                 .cornerRadius(10)
         }
         .padding(.bottom, 40)
     }
 
-    private func addLocation() {
-        guard !newLocation.isEmpty else { return }
-        locations.append(newLocation)
-        newLocation = ""
-    }
-
-    private func removeLocation(_ location: String) {
-        locations.removeAll { $0 == location }
-    }
-
     private func saveProfile() {
         // Code to save the profile information
         print("Profile saved!")
-        print("Name: \(name)")
-        print("Email: \(email)")
-        print("Password: \(password)")
-        print("Locations: \(locations.joined(separator: ", "))")
+        print("Name: \(user.fullname)")
+        print("Email: \(user.email)")
+        // Handle image saving if needed
     }
 }
 
@@ -200,8 +169,13 @@ struct ImagePicker: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
 }
 
-#Preview {
-    ProfileView()
+let sampleUser = User(id: "1", fullname: "John Doe", email: "johndoe@example.com", image: nil)
+
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView(user: sampleUser)
+    }
 }
+
 
 

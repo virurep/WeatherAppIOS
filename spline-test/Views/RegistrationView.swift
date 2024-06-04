@@ -13,6 +13,7 @@ struct RegistrationView: View {
   @State private var password = ""
   @State private var confirmPassword = ""
   @Environment(\.dismiss) var dismiss
+  @EnvironmentObject var viewModel: AuthViewModel
 
   var body: some View {
     VStack(alignment: .center) { // Change alignment to leading
@@ -51,7 +52,9 @@ struct RegistrationView: View {
 
       // Sign Up Button
       Button {
-        print("Sign user up...")
+          Task{
+              try await viewModel.createUser(withEmail: email, password:password, fullname:fullName)
+          }
       } label: {
         Text("Sign Up")
           .fontWeight(.semibold)

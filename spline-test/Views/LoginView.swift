@@ -10,6 +10,8 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     
     var body: some View {
         NavigationStack {
@@ -41,27 +43,30 @@ struct LoginView: View {
                 
                 //sign in
                 Button {
-                    print("Sign user in...")
+                    Task {
+                        do {
+                            try await viewModel.signIn(withEmail: email, password: password)
+                        } catch {
+                            // Handle error
+                            print("Error: \(error)")
+                        }
+                    }
                 } label: {
                     HStack {
                         Text("Sign In")
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
-                        
                         Image(systemName: "arrow.right")
-                            .foregroundColor(.white)
-                        
                     }
-                    .frame(width: UIScreen.main.bounds.width - 64, height: 56)
-                    .padding(.horizontal)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                    .shadow(radius: 5)
-                    .padding(.top, 24)
+                    .foregroundColor(.white)
                 }
-                
-                
-                
+                .frame(width: UIScreen.main.bounds.width - 64, height: 56)
+                .padding(.horizontal)
+                .background(Color.blue)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+                .padding(.top, 24)
+                }
                 
                 
                 Spacer()
@@ -86,7 +91,8 @@ struct LoginView: View {
         }
 
     }
-}
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View { LoginView() } }
+
+    struct LoginView_Previews: PreviewProvider {
+        static var previews: some View { LoginView() }
+    }

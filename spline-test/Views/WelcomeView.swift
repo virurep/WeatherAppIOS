@@ -9,12 +9,11 @@ import SwiftUI
 import CoreLocationUI
 
 struct WelcomeView: View {
-    @EnvironmentObject var locationManager:LocationManager
-     
+    @EnvironmentObject var locationManager: LocationManager
+    
     var body: some View {
-        VStack{
-          
-            LocationButton(.shareCurrentLocation){
+        VStack {
+            LocationButton(.shareCurrentLocation) {
                 locationManager.requestLocation()
             }
             .cornerRadius(30)
@@ -27,4 +26,6 @@ struct WelcomeView: View {
 
 #Preview {
     WelcomeView()
+        .environmentObject(LocationManager())
 }
+

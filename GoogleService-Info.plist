@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyB_rdisxfKXjN1qst39_d4DVQxjv53bF9A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>756446307019</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>edu.uw.ischool.virurep.spline-test</string>
+	<key>PROJECT_ID</key>
+	<string>weather-b528d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>weather-b528d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:756446307019:ios:3839246733c53f5d8cf14e</string>
+</dict>
+</plist>

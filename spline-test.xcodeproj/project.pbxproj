@@ -10,6 +10,12 @@
 		66B5DFAC2C0E841700696A5F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5DFAB2C0E841700696A5F /* LoginView.swift */; };
 		66B5DFAE2C0E843700696A5F /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5DFAD2C0E843600696A5F /* InputView.swift */; };
 		66B5DFB02C0E891500696A5F /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5DFAF2C0E891500696A5F /* RegistrationView.swift */; };
+		66B5DFB42C0EA55E00696A5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66B5DFB32C0EA55E00696A5F /* GoogleService-Info.plist */; };
+		66B5DFB72C0EA60C00696A5F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 66B5DFB62C0EA60C00696A5F /* FirebaseAuth */; };
+		66B5DFB92C0EA60C00696A5F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 66B5DFB82C0EA60C00696A5F /* FirebaseFirestoreSwift */; };
+		66B5DFBB2C0EA60C00696A5F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 66B5DFBA2C0EA60C00696A5F /* FirebaseStorage */; };
+		66B5DFBD2C0EA66300696A5F /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5DFBC2C0EA66300696A5F /* AuthViewModel.swift */; };
+		66B5DFBF2C0EBF0100696A5F /* SplineRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 66B5DFBE2C0EBF0100696A5F /* SplineRuntime */; };
 		AA8E30942BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA8E30932BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf */; };
 		D169BE252C0E714100FE35C6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169BE242C0E714100FE35C6 /* ProfileView.swift */; };
 		FA644ECB2BFC3F800007430F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECA2BFC3F800007430F /* LocationManager.swift */; };
@@ -51,6 +57,8 @@
 		66B5DFAB2C0E841700696A5F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		66B5DFAD2C0E843600696A5F /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		66B5DFAF2C0E891500696A5F /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		66B5DFB32C0EA55E00696A5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		66B5DFBC2C0EA66300696A5F /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		AA8E30932BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oktah_round_bold_italic-BF6407f0ed72273.otf"; sourceTree = "<group>"; };
 		AA8E30952BFDB8B1002B7D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D169BE242C0E714100FE35C6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -80,6 +88,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66B5DFBF2C0EBF0100696A5F /* SplineRuntime in Frameworks */,
+				66B5DFB72C0EA60C00696A5F /* FirebaseAuth in Frameworks */,
+				66B5DFB92C0EA60C00696A5F /* FirebaseFirestoreSwift in Frameworks */,
+				66B5DFBB2C0EA60C00696A5F /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +140,7 @@
 				66B5DFAF2C0E891500696A5F /* RegistrationView.swift */,
 				FA644ECF2BFC48490007430F /* LoadingScreen.swift */,
 				66B5DFAD2C0E843600696A5F /* InputView.swift */,
+				66B5DFBC2C0EA66300696A5F /* AuthViewModel.swift */,
 				FA644ED32BFC60850007430F /* WeatherView.swift */,
 				FA644EDE2C07CB7C0007430F /* SearchView.swift */,
 				FA644ED72BFE94BF0007430F /* ForecastView.swift */,
@@ -166,6 +179,7 @@
 				FA644EC92BFC3F400007430F /* Managers */,
 				FA7CDECB2BFBCB6600200386 /* spline_testApp.swift */,
 				FA7CDECF2BFBCB6800200386 /* Assets.xcassets */,
+				66B5DFB32C0EA55E00696A5F /* GoogleService-Info.plist */,
 				FA7CDED12BFBCB6800200386 /* Preview Content */,
 			);
 			path = "spline-test";
@@ -220,6 +234,10 @@
 			);
 			name = "spline-test";
 			packageProductDependencies = (
+				66B5DFB62C0EA60C00696A5F /* FirebaseAuth */,
+				66B5DFB82C0EA60C00696A5F /* FirebaseFirestoreSwift */,
+				66B5DFBA2C0EA60C00696A5F /* FirebaseStorage */,
+				66B5DFBE2C0EBF0100696A5F /* SplineRuntime */,
 			);
 			productName = "spline-test";
 			productReference = FA7CDEC82BFBCB6600200386 /* spline-test.app */;
@@ -295,6 +313,7 @@
 			mainGroup = FA7CDEBF2BFBCB6600200386;
 			packageReferences = (
 				FA8E039A2C0D88BF001F88D5 /* XCRemoteSwiftPackageReference "spline-ios" */,
+				66B5DFB52C0EA60C00696A5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FA7CDEC92BFBCB6600200386 /* Products */;
 			projectDirPath = "";
@@ -313,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA8E30942BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf in Resources */,
+				66B5DFB42C0EA55E00696A5F /* GoogleService-Info.plist in Resources */,
 				FA7CDED32BFBCB6800200386 /* Preview Assets.xcassets in Resources */,
 				FA7CDED02BFBCB6800200386 /* Assets.xcassets in Resources */,
 			);
@@ -351,6 +371,7 @@
 				66B5DFB02C0E891500696A5F /* RegistrationView.swift in Sources */,
 				FA644ED42BFC60850007430F /* WeatherView.swift in Sources */,
 				FA644ECE2BFC42EE0007430F /* WelcomeView.swift in Sources */,
+				66B5DFBD2C0EA66300696A5F /* AuthViewModel.swift in Sources */,
 				66B5DFAC2C0E841700696A5F /* LoginView.swift in Sources */,
 				FA644EDF2C07CB7C0007430F /* SearchView.swift in Sources */,
 				D169BE252C0E714100FE35C6 /* ProfileView.swift in Sources */,
@@ -517,7 +538,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"spline-test/Preview Content\"";
-				DEVELOPMENT_TEAM = 4ASXVDJ7H9;
+				DEVELOPMENT_TEAM = BAHNF9ZAAF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "spline-test/Info.plist";
@@ -549,7 +570,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"spline-test/Preview Content\"";
-				DEVELOPMENT_TEAM = 4ASXVDJ7H9;
+				DEVELOPMENT_TEAM = BAHNF9ZAAF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "spline-test/Info.plist";
@@ -691,6 +712,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		66B5DFB52C0EA60C00696A5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.27.0;
+			};
+		};
 		FA8E039A2C0D88BF001F88D5 /* XCRemoteSwiftPackageReference "spline-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/splinetool/spline-ios";
@@ -700,6 +729,29 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		66B5DFB62C0EA60C00696A5F /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66B5DFB52C0EA60C00696A5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		66B5DFB82C0EA60C00696A5F /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66B5DFB52C0EA60C00696A5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		66B5DFBA2C0EA60C00696A5F /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66B5DFB52C0EA60C00696A5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		66B5DFBE2C0EBF0100696A5F /* SplineRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA8E039A2C0D88BF001F88D5 /* XCRemoteSwiftPackageReference "spline-ios" */;
+			productName = SplineRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA7CDEC02BFBCB6600200386 /* Project object */;
 }
