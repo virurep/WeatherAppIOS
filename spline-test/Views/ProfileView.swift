@@ -17,7 +17,7 @@ struct ProfileView: View {
     @State private var newLocation: String = ""
 
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
+        VStack(spacing: 20) {
             profileImageView
             editNameField
             editEmailField
@@ -47,9 +47,9 @@ struct ProfileView: View {
             }
             Text("Click to edit")
                 .font(.custom("OktahRound-Md", size: 14))
-                .foregroundColor(.gray)
+                .foregroundColor(.darkPurple)
         }
-        .padding(.top, 60)
+        .padding(.top, 20)
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(image: $profileImage)
         }
@@ -57,10 +57,9 @@ struct ProfileView: View {
 
     private var editNameField: some View {
         TextField("Enter your name", text: $name)
-            .font(.custom("OktahRound-BdIt", size: 32))
+            .font(.custom("OktahRound-BdIt", size: 24))
             .foregroundColor(Color.darkPurple)
             .multilineTextAlignment(.center)
-            .padding()
             .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 
@@ -68,7 +67,6 @@ struct ProfileView: View {
         TextField("Enter your email", text: $email)
             .font(.custom("OktahRound-Md", size: 18))
             .foregroundColor(Color.darkPurple)
-            .padding()
             .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 
@@ -84,7 +82,6 @@ struct ProfileView: View {
                 SecureField("Enter your password", text: $password)
                     .font(.custom("OktahRound-Md", size: 18))
                     .foregroundColor(Color.darkPurple)
-                    .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             Button(action: { isPasswordVisible.toggle() }) {
@@ -206,4 +203,5 @@ struct ImagePicker: UIViewControllerRepresentable {
 #Preview {
     ProfileView()
 }
+
 
