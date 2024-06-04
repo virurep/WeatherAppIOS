@@ -1,8 +1,9 @@
 import SwiftUI
 import CoreLocation
+import FirebaseFirestore
+import FirebaseAuth
 
 struct ContentView: View {
-    
     @StateObject var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     var dailyForecastManager = DailyForecastManager()
@@ -15,7 +16,9 @@ struct ContentView: View {
     
     // Step 1: Authentication State
     @State private var isLoggedIn = false
-    
+    @State private var user: User?
+    @State private var isLoadingUser = true // Flag to indicate whether user data is being loaded
+
     var body: some View {
         VStack {
             // Step 3: Conditional Rendering
@@ -28,7 +31,13 @@ struct ContentView: View {
                     } else if showSearch {
                         SearchView(showSearch: $showSearch)
                     } else if showProfile {
-                        // ProfileView(user: <#T##User#>)
+                        if let user = user {
+                            ProfileView(user: user ?? User(id: "", fullname: "", email: "", image: nil))
+                        } else if isLoadingUser {
+                            ProgressView() // Show a loading indicator while user data is being loaded
+                        } else {
+                            Text("User data not found") // Display a message if user data is not available
+                        }
                     } else if let weather = weather {
                         WeatherView(weather: weather, refreshAction: {
                             refreshWeather(for: location)
@@ -53,6 +62,11 @@ struct ContentView: View {
                 LoginView(isLoggedIn: $isLoggedIn)
             }
             Spacer()
+        }
+        .onAppear {
+            if isLoggedIn {
+                fetchUserData()
+            }
         }
         .ignoresSafeArea(edges: .all)
         .background(Color(red: 116/255, green: 174/255, blue: 222/255))
@@ -80,6 +94,30 @@ struct ContentView: View {
             print()
         } catch {
             print("Error getting forecast: \(error)")
+        }
+    }
+    
+    private func fetchUserData() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("Error: User not authenticated")
+            return
+        }
+
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(userID)
+
+        userRef.getDocument { document, error in
+            if let document = document, document.exists {
+                do {
+                    let user = try document.data(as: User.self)
+                    self.user = user
+                } catch {
+                    print("Error decoding user data: \(error.localizedDescription)")
+                }
+            } else {
+                print("User document does not exist")
+            }
+            isLoadingUser = false // Set isLoadingUser to false after fetching user data
         }
     }
 }

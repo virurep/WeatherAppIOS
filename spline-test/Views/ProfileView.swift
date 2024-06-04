@@ -71,7 +71,6 @@ struct ProfileView: View {
             signOutButton
         }
         .padding()
-        .background(Color.blue.edgesIgnoringSafeArea(.all))
     }
 
     private var profileImageView: some View {
@@ -95,7 +94,7 @@ struct ProfileView: View {
         }
         .padding(.top, 20)
         .sheet(isPresented: $showImagePicker) {
-            ImagePicker(image: $user.image)
+//            ImagePicker(image: $user.image)
         }
     }
 
@@ -170,50 +169,13 @@ struct ProfileView: View {
     }
 }
 
-struct ImagePicker: UIViewControllerRepresentable {
-    @Binding var image: UIImage?
-    @Environment(\.presentationMode) var presentationMode
 
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
-
-        init(parent: ImagePicker) {
-            self.parent = parent
-        }
-
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            if let uiImage = info[.originalImage] as? UIImage {
-                parent.image = uiImage
-            }
-            parent.presentationMode.wrappedValue.dismiss()
-        }
-
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            parent.presentationMode.wrappedValue.dismiss()
-        }
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        picker.sourceType = .photoLibrary
-        return picker
-    }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-}
-
-let sampleUser = User(id: "1", fullname: "John Doe", email: "johndoe@example.com", image: nil)
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView(user: sampleUser)
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        ProfileView(user: User ?? User(id: "", fullname: "", email: "", image: nil))
+//        ProfileView(user: User)
+//    }
+//}
 
 //
 //import SwiftUI
