@@ -1,4 +1,5 @@
 import SwiftUI
+import FirebaseAuth
 import CoreLocation
 
 struct ContentView: View {
@@ -105,6 +106,15 @@ struct ContentView: View {
             print("Error getting forecast: \(error)")
         }
     }
+    
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+            viewModel.isSignedOut = true
+        } catch {
+            print("Error signing out: \(error.localizedDescription)")
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -113,9 +123,3 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(AuthViewModel()) // Assuming you need to provide AuthViewModel
     }
 }
-
-
-
-
-
-
