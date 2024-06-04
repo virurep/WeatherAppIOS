@@ -15,7 +15,8 @@ struct WeatherView: View {
     var weather: ResponseBody
     var refreshAction: () -> Void
     @Binding var showForecast: Bool
-//    @Binding var showHome: Bool
+    @Binding var showSearch: Bool
+    @Binding var showProfile: Bool
     
     var body: some View {
         GeometryReader { geometry in
@@ -31,7 +32,7 @@ struct WeatherView: View {
                     }
                     
                     VStack {
-                        HeaderView(city: weather.name, showForecast: $showForecast)
+                        HeaderView(city: weather.name, showForecast: $showForecast, showSearch: $showSearch, showProfile: $showProfile)
                             .padding(.top, 60)
                             .ignoresSafeArea(edges: .top)
                         
@@ -62,6 +63,8 @@ struct WeatherView: View {
 struct HeaderView: View {
     var city: String
     @Binding var showForecast: Bool
+    @Binding var showSearch: Bool
+    @Binding var showProfile: Bool
     @State private var showMenu = false
     
     var body: some View {
@@ -69,27 +72,19 @@ struct HeaderView: View {
             HStack {
                 Menu {
                     Button(action: {
-                    }) {
-                        Label("Home", systemImage: "house")
-                    }
-                    Button(action: {
                         showForecast = true
                     }) {
                         Label("Daily Forecast", systemImage: "calendar")
                     }
                     Button(action: {
-                        
-                    }) {
-                        Label("Hourly Forecast", systemImage: "clock")
-                    }
-                    Button(action: {
-                        
-                    }) {
-                        Label("Profile", systemImage: "person")
-                    }
-                    Button(action: {
+                        showSearch = true
                     }) {
                         Label("Search", systemImage: "magnifyingglass")
+                    }
+                    Button(action: {
+                        showProfile = true
+                    }) {
+                        Label("Profile", systemImage: "person")
                     }
 
                 } label: {

@@ -15,7 +15,6 @@
 		66B5DFB92C0EA60C00696A5F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 66B5DFB82C0EA60C00696A5F /* FirebaseFirestoreSwift */; };
 		66B5DFBB2C0EA60C00696A5F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 66B5DFBA2C0EA60C00696A5F /* FirebaseStorage */; };
 		66B5DFBD2C0EA66300696A5F /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B5DFBC2C0EA66300696A5F /* AuthViewModel.swift */; };
-		66B5DFBF2C0EBF0100696A5F /* SplineRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 66B5DFBE2C0EBF0100696A5F /* SplineRuntime */; };
 		AA8E30942BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA8E30932BFDB7F2002B7D71 /* oktah_round_bold_italic-BF6407f0ed72273.otf */; };
 		D169BE252C0E714100FE35C6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169BE242C0E714100FE35C6 /* ProfileView.swift */; };
 		FA644ECB2BFC3F800007430F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA644ECA2BFC3F800007430F /* LocationManager.swift */; };
@@ -34,6 +33,7 @@
 		FA7CDEDD2BFBCB6900200386 /* spline_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEDC2BFBCB6900200386 /* spline_testTests.swift */; };
 		FA7CDEE72BFBCB6900200386 /* spline_testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEE62BFBCB6900200386 /* spline_testUITests.swift */; };
 		FA7CDEE92BFBCB6900200386 /* spline_testUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CDEE82BFBCB6900200386 /* spline_testUITestsLaunchTests.swift */; };
+		FA8E039C2C0F1610001F88D5 /* SplineRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = FA8E039B2C0F1610001F88D5 /* SplineRuntime */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66B5DFBF2C0EBF0100696A5F /* SplineRuntime in Frameworks */,
+				FA8E039C2C0F1610001F88D5 /* SplineRuntime in Frameworks */,
 				66B5DFB72C0EA60C00696A5F /* FirebaseAuth in Frameworks */,
 				66B5DFB92C0EA60C00696A5F /* FirebaseFirestoreSwift in Frameworks */,
 				66B5DFBB2C0EA60C00696A5F /* FirebaseStorage in Frameworks */,
@@ -237,7 +237,7 @@
 				66B5DFB62C0EA60C00696A5F /* FirebaseAuth */,
 				66B5DFB82C0EA60C00696A5F /* FirebaseFirestoreSwift */,
 				66B5DFBA2C0EA60C00696A5F /* FirebaseStorage */,
-				66B5DFBE2C0EBF0100696A5F /* SplineRuntime */,
+				FA8E039B2C0F1610001F88D5 /* SplineRuntime */,
 			);
 			productName = "spline-test";
 			productReference = FA7CDEC82BFBCB6600200386 /* spline-test.app */;
@@ -716,8 +716,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.27.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		FA8E039A2C0D88BF001F88D5 /* XCRemoteSwiftPackageReference "spline-ios" */ = {
@@ -746,7 +746,7 @@
 			package = 66B5DFB52C0EA60C00696A5F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
-		66B5DFBE2C0EBF0100696A5F /* SplineRuntime */ = {
+		FA8E039B2C0F1610001F88D5 /* SplineRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FA8E039A2C0D88BF001F88D5 /* XCRemoteSwiftPackageReference "spline-ios" */;
 			productName = SplineRuntime;

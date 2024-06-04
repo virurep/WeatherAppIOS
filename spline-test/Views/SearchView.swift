@@ -1,121 +1,10 @@
-//import SwiftUI
-//
-//struct SearchView: View {
-//    @StateObject private var viewModel = SearchViewModel()
-//
-//    var body: some View {
-//        VStack {
-//            Spacer()
-//
-//            HStack {
-//                Spacer()
-//                TextField("Enter city name", text: $viewModel.city)
-//                    .font(.custom("OktahRound-BdIt", size: 18))
-//                    .padding()
-//                    .background(Color.white)
-//                    .cornerRadius(10)
-//                    .foregroundColor(Color.darkPurple)
-//                Spacer()
-//            }
-//            .padding(.horizontal, 16)
-//
-//            Button(action: {
-//                Task {
-//                    await viewModel.searchWeather()
-//                }
-//            }) {
-//                Text("Search")
-//                    .font(.custom("OktahRound-BdIt", size: 18))
-//                    .padding()
-//                    .background(Color.darkPurple)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
-//            }
-//            .padding()
-//
-//            if let weather = viewModel.weather {
-//                SearchWeatherView(weather: weather)
-//            } else if let error = viewModel.error {
-//                Text("Error: \(error.localizedDescription)")
-//                    .font(.custom("OktahRound-BdIt", size: 16))
-//                    .foregroundColor(.red)
-//                    .padding()
-//            }
-//
-//            Spacer()
-//        }
-//        .padding()
-//        .background(Color.customBlue.edgesIgnoringSafeArea(.all))
-//    }
-//}
-//
-//struct SearchWeatherView: View {
-//    let weather: SearchResponseBody
-//
-//    var body: some View {
-//        VStack(alignment: .leading, spacing: 10) {
-//            Text("City: \(weather.name)")
-//                .font(.custom("OktahRound-BdIt", size: 20))
-//                .foregroundColor(Color.darkPurple)
-//            Text("Temperature: \(weather.main.temp)°F")
-//                .font(.custom("OktahRound-BdIt", size: 18))
-//                .foregroundColor(Color.darkPurple)
-//            Text("Feels Like: \(weather.main.feelsLike)°F")
-//                .font(.custom("OktahRound-BdIt", size: 18))
-//                .foregroundColor(Color.darkPurple)
-//            Text("Min Temperature: \(weather.main.tempMin)°F")
-//                .font(.custom("OktahRound-BdIt", size: 18))
-//                .foregroundColor(Color.darkPurple)
-//            Text("Max Temperature: \(weather.main.tempMax)°F")
-//                .font(.custom("OktahRound-BdIt", size: 18))
-//                .foregroundColor(Color.darkPurple)
-//            Text("Pressure: \(weather.main.pressure) hPa")
-//                .font(.custom("OktahRound-BdIt", size: 18))
-//                .foregroundColor(Color.darkPurple)
-//            Text("Humidity: \(weather.main.humidity)%")
-//                .font(.custom("OktahRound-BdIt", size: 18))
-//                .foregroundColor(Color.darkPurple)
-//            Text("Wind Speed: \(weather.wind.speed) mph")
-//                .font(.custom("OktahRound-BdIt", size: 18))
-//                .foregroundColor(Color.darkPurple)
-//        }
-//        .padding()
-//        .background(Color.white)
-//        .cornerRadius(20)
-//        .padding(.horizontal, 16)
-//        .padding(.vertical, 10)
-//    }
-//}
-//
-//@MainActor
-//class SearchViewModel: ObservableObject {
-//    @Published var city: String = ""
-//    @Published var weather: SearchResponseBody?
-//    @Published var error: Error?
-//
-//    private let searchManager = SearchManager()
-//
-//    func searchWeather() async {
-//        do {
-//            guard !city.isEmpty else { return } // Ensure city name is not empty
-//            let weatherData = try await searchManager.getCurrentWeather(for: city)
-//            self.weather = weatherData
-//            self.error = nil
-//        } catch {
-//            self.weather = nil
-//            self.error = error
-//        }
-//    }
-//}
-
-
-
 
 import SwiftUI
 
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
     @State private var isSearching = true
+    @Binding var showSearch: Bool
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -157,7 +46,7 @@ struct SearchView: View {
                     .transition(.opacity) // Fade-in animation
                 } else {
                     if let weather = viewModel.weather {
-                        SearchWeatherView(weather: weather)
+                        SearchWeatherView(weather: weather, showSearch: $showSearch, city: weather.name)
                             .transition(.move(edge: .bottom)) // Slide-in animation from bottom
                     } else if let error = viewModel.error {
                         Text("Error: \(error.localizedDescription)")
@@ -210,14 +99,46 @@ struct SearchView: View {
 
 struct SearchWeatherView: View {
     let weather: SearchResponseBody
+    @Binding var showSearch: Bool
+    var city: String
 
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
-                    HeaderView(city: weather.name, showForecast: .constant(false))
+                    VStack {
+                        HStack {
+                            Menu {
+                                Button(action: {
+                                    showSearch = false
+                                }) {
+                                    Label("Home", systemImage: "house")
+                                }
+                                
+                            } label: {
+                                Image("hamburgerMenu")
+                                    .resizable()
+                                    .frame(width: 48, height: 48)
+                                    .foregroundColor(Color.darkPurple)
+                                    .padding()
+                            }
+                        }
                         .padding(.top, 60)
                         .ignoresSafeArea(edges: .top)
+                        
+                        Spacer()
+                        
+                        VStack {
+                            Text(city)
+                                .font(.custom("OktahRound-BdIt", size: 40))
+                                .foregroundColor(Color.darkPurple)
+                        }
+                        
+                        Spacer()
+                        
+                        Spacer().frame(width: 90)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     
                     Spacer(minLength: 180)
                     

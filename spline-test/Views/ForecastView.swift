@@ -1,16 +1,8 @@
-//
-//  ForecastView.swift
-//  spline-test
-//
-//  Created by Viru Repalle on 5/22/24.
-//
-
 import SwiftUI
 
 struct ForecastView: View {
     @State var forecast: ResponseBodyForecast
     @Binding var showForecast: Bool
-    
     
     var body: some View {
         ScrollView {
@@ -27,7 +19,6 @@ struct ForecastView: View {
                     .font(.custom("OktahRound-BdIt", size: 24))
                     .padding(.horizontal, 16)
                     .foregroundColor(Color.darkPurple)
-                
                 
                 ForEach(groupedForecastByDay(), id: \.date) { dailyData in
                     ForecastRowView(dailyData: dailyData)
@@ -74,19 +65,9 @@ struct ForecastHeaderView: View {
             HStack {
                 Menu {
                     Button(action: {
-                        showForecast = true
+                        showForecast = false
                     }) {
-                        Label("Daily Forecast", systemImage: "calendar")
-                    }
-                    Button(action: {
-                        
-                    }) {
-                        Label("Hourly Forecast", systemImage: "clock")
-                    }
-                    Button(action: {
-                        
-                    }) {
-                        Label("Profile", systemImage: "person")
+                        Label("Home", systemImage: "house")
                     }
                     
                 } label: {
