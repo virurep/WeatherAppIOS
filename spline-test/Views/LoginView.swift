@@ -4,13 +4,13 @@
 //
 //  Created by Gagan Singh on 6/3/24.
 //
-
 import SwiftUI
 
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @EnvironmentObject var viewModel: AuthViewModel
+    @Binding var isLoggedIn: Bool // Step 1: Binding for authentication state
     
     var body: some View {
         NavigationView {
@@ -43,6 +43,8 @@ struct LoginView: View {
                     Task {
                         do {
                             try await viewModel.signIn(withEmail: email, password: password)
+                            // Step 2: Update authentication state upon successful login
+                            isLoggedIn = true
                         } catch {
                             // Handle error
                             print("Error: \(error)")
@@ -83,7 +85,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(isLoggedIn: .constant(false)) // Step 3: Pass binding for authentication state
             .environmentObject(AuthViewModel()) // Assuming you need to provide AuthViewModel
     }
 }

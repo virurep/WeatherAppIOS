@@ -13,35 +13,44 @@ struct ContentView: View {
     @State private var showSearch = false
     @State private var showProfile = false
     
+    // Step 1: Authentication State
+    @State private var isLoggedIn = false
+    
     var body: some View {
         VStack {
-            if let location = locationManager.location {
-                if isRefreshing {
-                    LoadingScreen()
-                } else if showForecast, let forecast = forecast {
-                    ForecastView(forecast: forecast, showForecast: $showForecast)
-                } else if showSearch{
-                    SearchView(showSearch: $showSearch)
-                } else if showProfile{
-//                    ProfileView(user: <#T##User#>)
-                } else if let weather = weather {
-                    WeatherView(weather: weather, refreshAction: {
-                        refreshWeather(for: location)
-                    }, showForecast: $showForecast,showSearch: $showSearch, showProfile: $showProfile)
+            // Step 3: Conditional Rendering
+            if isLoggedIn {
+                if let location = locationManager.location {
+                    if isRefreshing {
+                        LoadingScreen()
+                    } else if showForecast, let forecast = forecast {
+                        ForecastView(forecast: forecast, showForecast: $showForecast)
+                    } else if showSearch {
+                        SearchView(showSearch: $showSearch)
+                    } else if showProfile {
+                        // ProfileView(user: <#T##User#>)
+                    } else if let weather = weather {
+                        WeatherView(weather: weather, refreshAction: {
+                            refreshWeather(for: location)
+                        }, showForecast: $showForecast, showSearch: $showSearch, showProfile: $showProfile)
+                    } else {
+                        LoadingScreen()
+                            .task {
+                                await fetchWeather(for: location)
+                                await fetchForecast(for: location)
+                            }
+                    }
                 } else {
-                    LoadingScreen()
-                        .task {
-                            await fetchWeather(for: location)
-                            await fetchForecast(for: location)
-                        }
+                    if locationManager.isLoading {
+                        LoadingScreen()
+                    } else {
+                        WelcomeView()
+                            .environmentObject(locationManager)
+                    }
                 }
             } else {
-                if locationManager.isLoading {
-                    LoadingScreen()
-                } else {
-                    WelcomeView()
-                        .environmentObject(locationManager)
-                }
+                // Step 3: Conditional Rendering
+                LoginView(isLoggedIn: $isLoggedIn)
             }
             Spacer()
         }
@@ -73,15 +82,11 @@ struct ContentView: View {
             print("Error getting forecast: \(error)")
         }
     }
-
-
 }
-
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
