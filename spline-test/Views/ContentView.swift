@@ -1,8 +1,9 @@
 import SwiftUI
 import CoreLocation
+import FirebaseFirestore
+import FirebaseAuth
 
 struct ContentView: View {
-    
     @StateObject var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     var dailyForecastManager = DailyForecastManager()
@@ -13,6 +14,11 @@ struct ContentView: View {
     @State private var showSearch = false
     @State private var showProfile = false
     
+    // Step 1: Authentication State
+    @State private var isLoggedIn = false
+    @State private var user: User?
+    @State private var isLoadingUser = true // Flag to indicate whether user data is being loaded
+
     var body: some View {
         VStack {
             if let location = locationManager.location {
@@ -43,6 +49,11 @@ struct ContentView: View {
             }
             Spacer()
         }
+        .onAppear {
+            if isLoggedIn {
+                fetchUserData()
+            }
+        }
         .ignoresSafeArea(edges: .all)
         .background(Color(red: 116/255, green: 174/255, blue: 222/255))
     }
@@ -71,15 +82,35 @@ struct ContentView: View {
             print("Error getting forecast: \(error)")
         }
     }
+    
+    private func fetchUserData() {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("Error: User not authenticated")
+            return
+        }
 
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(userID)
 
+        userRef.getDocument { document, error in
+            if let document = document, document.exists {
+                do {
+                    let user = try document.data(as: User.self)
+                    self.user = user
+                } catch {
+                    print("Error decoding user data: \(error.localizedDescription)")
+                }
+            } else {
+                print("User document does not exist")
+            }
+            isLoadingUser = false // Set isLoadingUser to false after fetching user data
+        }
+    }
 }
-
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+

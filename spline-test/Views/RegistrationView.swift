@@ -3,7 +3,6 @@
 //
 //  Created by Gagan Singh on 6/3/24.
 //
-
 import Foundation
 import SwiftUI
 
@@ -81,7 +80,7 @@ struct RegistrationView: View {
                   .foregroundColor(.blue) // Use same blue as Sign Up button
               }
             }
-            .padding(.top, 12) 
+            .padding(.top, 12)
 
             Spacer()
 
