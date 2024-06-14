@@ -23,7 +23,7 @@ struct ForecastView: View {
                 ForEach(groupedForecastByDay(), id: \.date) { dailyData in
                     ForecastRowView(dailyData: dailyData)
                         .padding(.horizontal, 16)
-                        .padding(.vertical, 15) // Increased vertical padding for more spacing between rows
+                        .padding(.vertical, 8) // Increased vertical padding for more spacing between rows
                 }
             }
         }
@@ -40,13 +40,15 @@ struct ForecastView: View {
             let date = String(entry.dt_txt.prefix(10)) // Extract date part
             let temp = entry.main.temp
             let pop = entry.pop * 100 // Convert to percentage
+            let description = entry.weather.first?.description.capitalized ?? "Unknown"
+            print(description)
             
             if dailyForecasts[date] != nil {
                 dailyForecasts[date]!.maxTemp = max(dailyForecasts[date]!.maxTemp, temp)
                 dailyForecasts[date]!.minTemp = min(dailyForecasts[date]!.minTemp, temp)
                 dailyForecasts[date]!.pop = max(dailyForecasts[date]!.pop, pop)
             } else {
-                dailyForecasts[date] = DailyForecast(date: date, maxTemp: temp, minTemp: temp, pop: pop)
+                dailyForecasts[date] = DailyForecast(date: date, maxTemp: temp, minTemp: temp, pop: pop, description: description)
             }
         }
         
@@ -120,7 +122,7 @@ struct ForecastRowView: View {
             Spacer()
             
             VStack {
-                Text("Partly Cloudy") // Centered weather description
+                Text(dailyData.description) // Centered weather description
                     .font(.custom("OktahRound-BdIt", size: 16))
                     .foregroundColor(Color.darkPurple)
             }
@@ -164,4 +166,5 @@ struct DailyForecast {
     var maxTemp: Double
     var minTemp: Double
     var pop: Double
+    var description: String
 }
