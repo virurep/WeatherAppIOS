@@ -22,9 +22,7 @@ struct ContentView: View {
                     ForecastView(forecast: forecast, showForecast: $showForecast)
                 } else if showSearch{
                     SearchView(showSearch: $showSearch)
-                } else if showProfile{
-//                    ProfileView(user: <#T##User#>)
-                } else if let weather = weather {
+                }  else if let weather = weather {
                     WeatherView(weather: weather, refreshAction: {
                         refreshWeather(for: location)
                     }, showForecast: $showForecast,showSearch: $showSearch, showProfile: $showProfile)
